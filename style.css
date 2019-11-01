@@ -1,0 +1,22 @@
+body {
+    background: black;
+    width: 100%;
+}
+
+.main-container {
+    width: 70vw;
+    height: 45vw;
+    max-width: 1063px;
+    max-height: 650px;
+    border: 2px solid #333;
+    margin: 6rem auto;
+}
+
+.binary-code-svg {
+    width: 70vw;
+    height: 40vw;
+    max-width: 1063px;
+    max-height: 598px;
+    border: 2px solid #333;
+}
+
