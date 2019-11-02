@@ -3,9 +3,21 @@ body {
     width: 100%;
 }
 
+.default {
+    fill: #45ff00;
+}
+
+.dark {
+    fill: #153d07;
+}
+
+.black {
+    fill: black;
+}
+
 .main-container {
     width: 70vw;
-    height: 45vw;
+    height: 42vw;
     max-width: 1063px;
     max-height: 650px;
     border: 2px solid #333;
@@ -14,7 +26,7 @@ body {
 
 .binary-code-svg {
     width: 70vw;
-    height: 40vw;
+    height: 39vw;
     max-width: 1063px;
     max-height: 598px;
     border: 2px solid #333;
