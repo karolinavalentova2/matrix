@@ -56,6 +56,8 @@ function generateIdOnSvg() {
 }
 
 function doStartIntroScene() {
+    addAssignmentToHTML();
+
     IntroInterval = setInterval(() => {
         const path = document.getElementById(`bin-${getRandomInt(0, iterator)}`);
 
@@ -97,17 +99,18 @@ function doStop(scene) {
         case 'intro': {
             clearInterval(IntroInterval);
             doClearScene();
+            removeAssignmentFromHTML();
+
+            doStartLogoScene();
+            break;
+        }
+        case 'stopLogo': {
+            // clearInterval(IntroInterval);
+            removeLogoFromHTML();
 
             doStartSimonScene();
             break;
         }
-        // case 'logo': {
-        //     clearInterval(IntroInterval);
-        //     doClearScene();
-        //
-        //     doStartSimonScene();
-        //     break;
-        // }
         case 'stopSimonsFace': {
             clearInterval(SimonsFaceInterval);
             doClearScene();
@@ -125,6 +128,14 @@ function doStop(scene) {
             break;
         }
     }
+}
+
+function doStartLogoScene() {
+    addLogoToHTML();
+
+    setTimeout(() => {
+        doStop('stopLogo');
+    },2000);
 }
 
 function doStartSimonScene() {
@@ -184,6 +195,39 @@ function doClearScene() {
         path.classList.add('default');
     })
 }
+
+function addAssignmentToHTML() {
+    const entryTemplate = document.getElementById('assignmentNumberTemplate');
+    const newTempEntry = entryTemplate.content.cloneNode(true);
+
+    newTempEntry.firstElementChild;
+
+    document.getElementById('assignmentNumberContainer').appendChild(newTempEntry);
+}
+
+function removeAssignmentFromHTML() {
+    const node = document.getElementById("assignmentNumberContainer");
+    while (node.firstChild) {
+        node.removeChild(node.firstChild);
+    }
+}
+
+function addLogoToHTML() {
+    const entryTemplate = document.getElementById('logoTemplate');
+    const newTempEntry = entryTemplate.content.cloneNode(true);
+
+    newTempEntry.firstElementChild;
+
+    document.getElementById('logoContainer').appendChild(newTempEntry);
+}
+
+function removeLogoFromHTML() {
+    const node = document.getElementById("logoContainer");
+    while (node.firstChild) {
+        node.removeChild(node.firstChild);
+    }
+}
+
 // Source: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
 function getRandomInt(min, max) {
     min = Math.ceil(min);
