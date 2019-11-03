@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrix</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+    .c01{
+        transform-origin: center;
+        animation: scale 1s infinite linear ;
+    }
+    .c02{
+        transform-origin: center;
+        animation: scale 2s infinite linear ;
+        animation-delay: 1s;
+    }
+    .c03{
+        transform-origin: center;
+        animation: scale 3s infinite linear ;
+    }
+    .c04{
+        transform-origin: center;
+        animation: scale 4s infinite linear ;
+        animation-delay: 3s;
+    }
+    .c05{
+        transform-origin: center;
+        animation: scale 5s infinite linear ;
+        animation-delay: 2s;
+    }
+    @keyframes scale{
+        0% {transform: scale(0);}
+        50% {transform: scale(1);}
+        100% {transform: scale(0);}
+    }
+    /*.ra02{
+        animation: move 3s infinite linear reverse;
+        y: 50px;
+    }
+    @keyframes move{
+        from{
+            x: -100px;
+        }
+        to{
+            x: 1200px;
+        }
+    }*/
+    </style>
+    <button id="startTest">start</button>
+        <main class="main-container">
+                <div class="center-template-content" id="assignmentNumberContainer"></div>
+                <div class="center-template-content" id="logoContainer"></div>
+                <div class="binary-code-svg" id="binaryCodeSvg"></div>
+                <div class="main-caption">
+                    <p>14C.01.05 | Group Presentation | KEA 2019</p>
+                    <p>Simon Erasmus Johansen | Karolina Valentova</p>
+                </div>
+            </main>
+    <script>
+        function video(){
+            fetch("video_matrix.svg").then(e => e.text()).then(svg => {document.querySelector("#binaryCodeSvg").innerHTML = svg;});
+        }
+        video();
+        document.querySelector("#startTest").addEventListener("click", e=>{
+            document.querySelector(".r01").classList.add("ra01");
+        });
+    </script>
+</body>
+</html>
