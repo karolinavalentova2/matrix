@@ -9,7 +9,7 @@
         </video>
     </foreignObject>
     <defs>
-        <g id="maskElements">
+        <g id="maskElements" filter="url(#displacementFilter)">
             <rect width="1063" height="598" x="0" y="0" fill="white"></rect>
             <circle class="c01" r="1000" cx="532" cy="299" fill="url('#searchLight')"></circle>
             <circle class="c02" r="1000" cx="532" cy="299" fill="url('#searchLight')"></circle>
@@ -24,6 +24,10 @@
             <stop offset="90%" stop-color="black"/>
             <stop offset="100%" stop-color="white" />
         </radialGradient>
+        <filter id="displacementFilter">
+         <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="50" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
     </defs>
     
 </svg>
