@@ -58,7 +58,7 @@ function generateIdOnSvg() {
 }
 
 function doStartIntroScene() {
-    addAssignmentToHTML();
+    addElementToHTML('assignmentNumberTemplate', 'assignmentNumberContainer');
 
     IntroInterval = setInterval(() => {
         const path = document.getElementById(`bin-${getRandomInt(0, iterator)}`);
@@ -101,38 +101,39 @@ function doStop(scene) {
         case 'intro': {
             clearInterval(IntroInterval);
             doClearScene();
-            removeAssignmentFromHTML();
+            removeElementFromHTML('assignmentNumberContainer');
 
-            doStartLogoScene();
+            addElementToHTML('logoTemplate', 'logoContainer');
+            setTimeout(() => {
+                doStop('stopLogo');
+            }, 5000);
             break;
         }
         case 'stopLogo': {
-            // clearInterval(IntroInterval);
-            removeLogoFromHTML();
+            removeElementFromHTML('logoContainer');
 
             doStartSimonScene();
             break;
         }
         case 'stopSimonsFace': {
-            // clearInterval(SimonsFaceInterval);
             doClearScene();
 
             doStartKarolinaScene();
             break;
         }
         case 'stopKarolinasFace': {
-            // clearInterval(KarolinasFaceInterval);
             doClearScene();
-            addGroupImgToHTML();
 
+            addElementToHTML('groupImgTemplate', 'groupImg');
+            setTimeout(() => {
+                doStop('stopGroupImg');
+            }, 5000);
             break;
         }
         case 'stopGroupImg': {
-            // clearInterval(GroupImgInterval);
-            // doClearScene();
-            removeGroupImgFromHTML();
-            doStartVideoScene();
+            removeElementFromHTML('groupImg');
 
+            doStartVideoScene();
             break;
         }
         default: {
@@ -141,12 +142,20 @@ function doStop(scene) {
     }
 }
 
-function doStartLogoScene() {
-    addLogoToHTML();
+function addElementToHTML(templateId, element) {
+    const entryTemplate = document.getElementById(templateId);
+    const newTempEntry = entryTemplate.content.cloneNode(true);
 
-    setTimeout(() => {
-        doStop('stopLogo');
-    },2000);
+    newTempEntry.firstElementChild;
+
+    document.getElementById(element).appendChild(newTempEntry);
+}
+
+function removeElementFromHTML(element) {
+    const node = document.getElementById(element);
+    while (node.firstChild) {
+        node.removeChild(node.firstChild);
+    }
 }
 
 function doStartSimonScene() {
@@ -205,60 +214,6 @@ function doClearScene() {
 
         path.classList.add('default');
     })
-}
-
-function addAssignmentToHTML() {
-    const entryTemplate = document.getElementById('assignmentNumberTemplate');
-    const newTempEntry = entryTemplate.content.cloneNode(true);
-
-    newTempEntry.firstElementChild;
-
-    document.getElementById('assignmentNumberContainer').appendChild(newTempEntry);
-}
-
-function removeAssignmentFromHTML() {
-    const node = document.getElementById("assignmentNumberContainer");
-    while (node.firstChild) {
-        node.removeChild(node.firstChild);
-    }
-}
-
-function addLogoToHTML() {
-    const entryTemplate = document.getElementById('logoTemplate');
-    const newTempEntry = entryTemplate.content.cloneNode(true);
-
-    newTempEntry.firstElementChild;
-
-    document.getElementById('logoContainer').appendChild(newTempEntry);
-}
-
-function removeLogoFromHTML() {
-    const node = document.getElementById("logoContainer");
-    while (node.firstChild) {
-        node.removeChild(node.firstChild);
-    }
-}
-
-function addGroupImgToHTML() {
-
-    const entryTemplate = document.getElementById('groupImgTemplate');
-    const newTempEntry = entryTemplate.content.cloneNode(true);
-
-    newTempEntry.firstElementChild;
-
-    document.getElementById('groupImg').appendChild(newTempEntry);
-
-    setTimeout(() => {
-        doStop('stopGroupImg');
-    }, 5000);
-
-}
-
-function removeGroupImgFromHTML() {
-    const node = document.getElementById("groupImg");
-    while (node.firstChild) {
-        node.removeChild(node.firstChild);
-    }
 }
 
 function playBackground(){
