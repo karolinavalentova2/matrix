@@ -15,6 +15,7 @@ const karolinaFaceIDS = ["bin-196", "bin-197", "bin-198", "bin-199", "bin-200", 
 
 async function doStart() {
     await loadSVG();
+    playBackground();
 }
 
 async function loadSVG() {
@@ -23,6 +24,7 @@ async function loadSVG() {
             binaryCodeSVG: await (await fetch("./images/binary_code.svg")).text(),
         };
         document.getElementById('binaryCodeSvg').innerHTML = SVGS.binaryCodeSVG;
+
 
         generateIdOnSvg();
 
@@ -112,15 +114,24 @@ function doStop(scene) {
             break;
         }
         case 'stopSimonsFace': {
-            clearInterval(SimonsFaceInterval);
+            // clearInterval(SimonsFaceInterval);
             doClearScene();
 
             doStartKarolinaScene();
             break;
         }
         case 'stopKarolinasFace': {
-            clearInterval(KarolinasFaceInterval);
+            // clearInterval(KarolinasFaceInterval);
+            doClearScene();
+            addGroupImgToHTML();
+
+            break;
+        }
+        case 'stopGroupImg': {
+            // clearInterval(GroupImgInterval);
             // doClearScene();
+            removeGroupImgFromHTML();
+            doStartVideoScene();
 
             break;
         }
@@ -227,6 +238,53 @@ function removeLogoFromHTML() {
         node.removeChild(node.firstChild);
     }
 }
+
+function addGroupImgToHTML() {
+
+    const entryTemplate = document.getElementById('groupImgTemplate');
+    const newTempEntry = entryTemplate.content.cloneNode(true);
+
+    newTempEntry.firstElementChild;
+
+    document.getElementById('groupImg').appendChild(newTempEntry);
+
+    setTimeout(() => {
+        doStop('stopGroupImg');
+    }, 5000);
+
+}
+
+function removeGroupImgFromHTML() {
+    const node = document.getElementById("groupImg");
+    while (node.firstChild) {
+        node.removeChild(node.firstChild);
+    }
+}
+
+function playBackground(){
+//Using howler library to play the sound
+//     const backgroundMusic = new Audio("./images/matrix.mp3");
+//     const play = backgroundMusic.play();
+//     play.currentTime = 25;
+
+    const audio = document.getElementById("audioPlay");
+    audio.currentTime = 25;
+    audio.play();
+}
+
+async function doStartVideoScene() {
+    try {
+        const SVGS = {
+            video: await (await fetch("./images/video_matrix.svg")).text(),
+        };
+        document.getElementById('binaryCodeSvg').innerHTML = SVGS.video;
+
+
+    } catch(error) {
+        console.error('Cannot read svg file, reason: ' + error.message);
+    }
+}
+
 
 // Source: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
 function getRandomInt(min, max) {

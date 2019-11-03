@@ -36,6 +36,8 @@ body {
 .center-template-content {
     width: inherit;
     height: 39vw;
+    max-width: 1063px;
+    max-height: 650px;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -66,5 +68,40 @@ p {
 
 .logo-content{
     background: black;
+}
+
+.group-image-style {
+    width: inherit;
+    height: 39vw;
+}
+
+/* video filter */
+.c01{
+    transform-origin: center;
+    animation: scale 1s infinite linear ;
+}
+.c02{
+    transform-origin: center;
+    animation: scale 2s infinite linear ;
+    animation-delay: 1s;
+}
+.c03{
+    transform-origin: center;
+    animation: scale 3s infinite linear ;
+}
+.c04{
+    transform-origin: center;
+    animation: scale 4s infinite linear ;
+    animation-delay: 3s;
+}
+.c05{
+    transform-origin: center;
+    animation: scale 5s infinite linear ;
+    animation-delay: 2s;
+}
+@keyframes scale{
+    0% {transform: scale(0);}
+    50% {transform: scale(1);}
+    100% {transform: scale(0);}
 }
 
