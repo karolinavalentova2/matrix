@@ -222,9 +222,10 @@ function playBackground(){
 //     const play = backgroundMusic.play();
 //     play.currentTime = 25;
 
-    const audio = document.getElementById("audioPlay");
-    audio.currentTime = 25;
-    audio.play();
+    // const audio = document.getElementById("audioPlay");
+    // audio.currentTime = 25;
+    // audio.parentElement.removeAttribute('muted')
+    // audio.play();
 }
 
 async function doStartVideoScene() {
